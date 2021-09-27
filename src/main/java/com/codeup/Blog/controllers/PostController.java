@@ -21,6 +21,7 @@ public class PostController {
     private final PostRepository postDao;
 
 
+    @Autowired
     private UserRepository userDao;
 
     public PostController(PostRepository postDao) {
