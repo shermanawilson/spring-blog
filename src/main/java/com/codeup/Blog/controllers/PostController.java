@@ -75,7 +75,7 @@ public class PostController {
         postDao.delete(deletePost);
 
 
-        return "index";
+        return "redirect:/index";
     }
 
 
