@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Viewing all Posts</h1>
+<div th:each="post:${posts}">
+    <h2 th:text="${post.title}">Title</h2>
+    <div th:text="${post.description}"></div>
+
+<h5>Edit Post</h5>
+<form method="get" th:action="@{|/post/edit/${post.id}|}">
+    <label for="edit">Edit</label>
+    <input name="edit" type="submit" id="edit">
+</form>
+<form method="post" th:action="@{|/post/delete/${post.id}|}">
+    <label for="delete">Delete</label>
+    <input name="delete" type="submit" id="delete">
+</form>
+</div>
+</body>
+</html>
