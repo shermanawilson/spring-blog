@@ -15,6 +15,7 @@
 <div th:each="post:${posts}">
     <h2 th:text="${post.title}">Title</h2>
     <h3 th:text="${post.description}"></h3>
+    <p>OWNER: <span th:text="${post.owner}"></span></p>
 
 <h5>Edit Post</h5>
 <form  class="form-group" method="get" th:action="@{|/post/edit/${post.id}|}">
