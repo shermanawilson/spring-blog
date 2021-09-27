@@ -67,13 +67,16 @@ public class PostController {
     }
 
 
-    @GetMapping("/post/delete/${id}")
 
     @PostMapping("/post/delete/{id}")
-    public String deletePost(Model model){
+    public String deletePost(Model model, @PathVariable Long id){
+
+        Post deletePost = postDao.getById(id);
+        postDao.delete(deletePost);
 
 
         return "index";
     }
+
 
 }
