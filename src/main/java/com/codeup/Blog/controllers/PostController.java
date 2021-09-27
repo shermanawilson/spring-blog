@@ -39,7 +39,6 @@ public class PostController {
     }
 
 
-
     @GetMapping("/post/edit/{id}")
     public String editPost(Model model, @PathVariable Long id){
 

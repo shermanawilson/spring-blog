@@ -9,6 +9,5 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     Post getByDescription(String description);
 
-
     Post getById(String id);
 }
