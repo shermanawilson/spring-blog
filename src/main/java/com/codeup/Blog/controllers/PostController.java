@@ -75,10 +75,15 @@ public class PostController {
             @RequestParam String title,
             @RequestParam String description) {
 
-        Post updatedPost = new Post(id, title, description);
-        postDao.save(updatedPost);
+
+        Post postToUpdate = postDao.getById(id);
+        postToUpdate.setTitle(title);
+        postToUpdate.setDescription(description);
+
+        postDao.save(postToUpdate);
 
 
+        //Post updatedPost = new Post(id, title, description);
         return "redirect:/index";
     }
 
