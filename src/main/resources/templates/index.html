@@ -6,27 +6,27 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 <div class="container text-center">
-<h1>Viewing all Posts</h1>
+    <h1>Viewing all Posts</h1>
     <h5>Create Post</h5>
-    <form  class="form-group" method="get" th:action="@{|/post/create|}">
+    <form class="form-group" method="get" th:action="@{|/post/create|}">
         <button class="form-control btn-sm" name="create" type="submit" id="create">Create</button>
     </form>
 
     <div class="card">
-<div class="card-body" th:each="post:${posts}">
-    <h2 class="card-title" th:text="${post.title}">Title</h2>
-    <h3 class="card-subtitle" th:text="${post.description}"></h3>
-    <h6 class="card-text">Created By: <span th:text="${post.owner.username}"></span></h6>
+        <div class="card-body" th:each="post:${posts}">
+            <h2 class="card-title" th:text="${post.title}">Title</h2>
+            <h3 class="card-subtitle" th:text="${post.description}"></h3>
+            <h6 class="card-text">Created By: <span th:text="${post.owner.username}"></span></h6>
 
-<h5>Edit Post</h5>
-<form  class="form-group" method="get" th:action="@{|/post/edit/${post.id}|}">
-    <button class="form-control btn-sm" name="edit" type="submit" id="edit">Edit</button>
-</form>
-<form  class="form-group" method="post" th:action="@{|/post/delete/${post.id}|}">
-    <button class="form-control btn-sm" name="delete" type="submit" id="delete">Delete</button>
-</form>
-</div>
-</div>
+            <h5>Edit Post</h5>
+            <form class="form-group" method="get" th:action="@{|/post/edit/${post.id}|}">
+                <button class="form-control btn-sm" name="edit" type="submit" id="edit">Edit</button>
+            </form>
+            <form class="form-group" method="post" th:action="@{|/post/delete/${post.id}|}">
+                <button class="form-control btn-sm" name="delete" type="submit" id="delete">Delete</button>
+            </form>
+        </div>
+    </div>
 </div>
 <footer th:replace="partials/footer :: footer"></footer>
 <script th:replace="partials/scripts :: scripts"></script>

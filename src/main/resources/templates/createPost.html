@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/head :: head">
-  <title>Title</title>
+    <title>Title</title>
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 <div class="container text-center">
 
-  <h1>Create Post</h1>
-  <form class="form-group" th:method="post" th:action="@{/post/create}" th:object="${post}">
+    <h1>Create Post</h1>
+    <form class="form-group" th:method="post" th:action="@{/post/create}" th:object="${post}">
 
-    <label for="createTitle">Title</label>
-    <input class="form-control" id="createTitle" type="text" th:field="*{title}">
+        <label for="createTitle">Title</label>
+        <input class="form-control" id="createTitle" type="text" th:field="*{title}">
 
-    <label for="createDescription">Description</label>
-    <input class="form-control" id="createDescription" type="text" th:field="*{description}"> <br>
+        <label for="createDescription">Description</label>
+        <input class="form-control" id="createDescription" type="text" th:field="*{description}"> <br>
 
-    <button class="btn btn-secondary btn-lg btn-block" type="submit">Create</button>
+        <button class="btn btn-secondary btn-lg btn-block" type="submit">Create</button>
 
-  </form>
+    </form>
 
 </div>
 <footer th:replace="partials/footer :: footer"></footer>

@@ -1,7 +1,5 @@
 package com.codeup.Blog.models;
 
-import jdk.jfr.Enabled;
-
 import javax.persistence.*;
 
 @Entity
@@ -22,7 +20,8 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User owner;
 
-    public Post() {}
+    public Post() {
+    }
 
     public Post(long id, String title, String description) {
         this.id = id;
