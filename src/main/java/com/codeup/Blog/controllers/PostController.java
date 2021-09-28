@@ -6,10 +6,7 @@ import com.codeup.Blog.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -44,13 +41,22 @@ public class PostController {
         return "index";
     }
 
-//    @PostMapping("/post/create")
-//    public String createPost(
-//    @RequestParam(name = "title") String title,
-//    @RequestParam(name = "description") String desctirpction ) {
-//
-//        a
-//    }
+    @GetMapping("/post/create")
+    public String showCreateForm(Model model) {
+
+        model.addAttribute("post", new Post());
+        return "createPost";
+    }
+
+    @PostMapping("/post/create")
+    public String createPost(@ModelAttribute Post post) {
+
+
+        post.setOwner(userDao.getById(1L));//sets owner manually
+        postDao.save(post);
+
+        return "redirect:/index";
+    }
 
     @GetMapping("/post/edit/{id}")
     public String editPost(Model model, @PathVariable Long id) {

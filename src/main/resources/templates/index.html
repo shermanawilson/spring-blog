@@ -12,10 +12,15 @@
 <body>
 <div class="container text-center">
 <h1>Viewing all Posts</h1>
-<div th:each="post:${posts}">
-    <h2 th:text="${post.title}">Title</h2>
-    <h3 th:text="${post.description}"></h3>
-    <p>OWNER: <span th:text="${post.owner.username}"></span></p>
+    <h5>Create Post</h5>
+    <form  class="form-group" method="get" th:action="@{|/post/create|}">
+        <button class="form-control btn-sm" name="create" type="submit" id="create">Create</button>
+    </form>
+    <div class="card">
+<div class="card-body" th:each="post:${posts}">
+    <h2 class="card-title" th:text="${post.title}">Title</h2>
+    <h3 class="card-subtitle" th:text="${post.description}"></h3>
+    <h6 class="card-text">Owner: <span th:text="${post.owner.username}"></span></h6>
 
 <h5>Edit Post</h5>
 <form  class="form-group" method="get" th:action="@{|/post/edit/${post.id}|}">
@@ -24,6 +29,7 @@
 <form  class="form-group" method="post" th:action="@{|/post/delete/${post.id}|}">
     <button class="form-control btn-sm" name="delete" type="submit" id="delete">Delete</button>
 </form>
+</div>
 </div>
 </div>
 
