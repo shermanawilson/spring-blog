@@ -27,13 +27,11 @@ public class PostController {
     private UserRepository userDao;
 
 
-    public PostController(PostRepository postDao) {
+    public PostController(PostRepository postDao, EmailService emailService) {
         this.postDao = postDao;
-    }
-
-    public PostController(EmailService emailService){
         this.emailService = emailService;
     }
+
 
     @GetMapping("/index")
     public String showComments(Model model) {
