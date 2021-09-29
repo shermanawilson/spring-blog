@@ -3,6 +3,7 @@ package com.codeup.Blog.controllers;
 import com.codeup.Blog.models.Post;
 import com.codeup.Blog.repositories.PostRepository;
 import com.codeup.Blog.repositories.UserRepository;
+import com.codeup.Blog.services.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,14 +16,23 @@ import java.util.List;
 public class PostController {
 
 
+    @Autowired
     private final PostRepository postDao;
+
+
+    private final EmailService emailService;
 
 
     @Autowired
     private UserRepository userDao;
 
+
     public PostController(PostRepository postDao) {
         this.postDao = postDao;
+    }
+
+    public PostController(EmailService emailService){
+        this.emailService = emailService;
     }
 
     @GetMapping("/index")
