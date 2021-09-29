@@ -18,13 +18,8 @@ import java.util.List;
 public class PostController {
 
 
-
     private final PostRepository postDao;
-
-
     private final EmailService emailService;
-
-
     private final UserRepository userDao;
 
     public PostController(PostRepository postDao, EmailService emailService, UserRepository userDao) {
@@ -62,6 +57,7 @@ public class PostController {
 
 
         post.setOwner(userDao.getById(1L));//sets owner manually
+        emailService.prepareAndSend(post,"New Post", "You created a new Post");
         postDao.save(post);
 
         return "redirect:/index";
