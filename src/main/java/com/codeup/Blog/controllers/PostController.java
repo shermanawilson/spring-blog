@@ -4,10 +4,12 @@ import com.codeup.Blog.models.Post;
 import com.codeup.Blog.repositories.PostRepository;
 import com.codeup.Blog.repositories.UserRepository;
 import com.codeup.Blog.services.EmailService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -16,20 +18,19 @@ import java.util.List;
 public class PostController {
 
 
-    @Autowired
+
     private final PostRepository postDao;
 
 
     private final EmailService emailService;
 
 
-    @Autowired
-    private UserRepository userDao;
+    private final UserRepository userDao;
 
-
-    public PostController(PostRepository postDao, EmailService emailService) {
+    public PostController(PostRepository postDao, EmailService emailService, UserRepository userDao) {
         this.postDao = postDao;
         this.emailService = emailService;
+        this.userDao = userDao;
     }
 
 
@@ -77,21 +78,15 @@ public class PostController {
     }
 
     @PostMapping("/post/edit/{id}")
-    public String editPost(
-            Model model,
-            @PathVariable Long id,
-            @RequestParam String title,
-            @RequestParam String description) {
+    public String editPost(@PathVariable Long id, @ModelAttribute Post updatedPost) {
 
 
-        Post postToUpdate = postDao.getById(id);
-        postToUpdate.setTitle(title);
-        postToUpdate.setDescription(description);
+        updatedPost.setId(id);
 
-        postDao.save(postToUpdate);
+        updatedPost.setOwner(userDao.getById(1L));
 
+        postDao.save(updatedPost);
 
-        //Post updatedPost = new Post(id, title, description);
         return "redirect:/index";
     }
 

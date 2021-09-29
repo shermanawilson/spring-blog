@@ -8,13 +8,13 @@
 <div class="container text-center">
 
     <h1>Edit Post</h1>
-    <form class="form-group" method="post" th:action="@{|/post/edit/${post.id}|}">
+    <form class="form-group" th:method="post" th:action="@{|/post/edit/${post.id}|}" th:object="${post}">
 
         <label for="editPost">Title</label>
-        <input class="form-control" id="editPost" name="title" type="text" th:value="${post.title}">
+        <input class="form-control" id="editPost" th:field="*{title}" type="text">
 
         <label for="editPost">Description</label>
-        <input class="form-control" id="editPostD" name="description" type="text" th:value="${post.description}"> <br>
+        <input class="form-control" id="editPostD" th:field="*{description}" type="text"> <br>
 
         <button class="btn btn-secondary btn-lg btn-block" type="submit">Update</button>
     </form>
